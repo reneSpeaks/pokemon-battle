@@ -3,6 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { FaHeart } from 'react-icons/fa';
 import { isStored } from '../utils/storage.js';
+import { capitalize } from '../utils/helper.js';
 
 const PokemonCard = ({ pokemonURL }) => {
   const [pokemon, setPokemon] = useState(null);
@@ -49,25 +50,25 @@ const PokemonCard = ({ pokemonURL }) => {
               <span className="text-xs tracking-wider font-semibold">HP</span> {pokemon.stats[0].base_stat}
             </p>
           </div>
-          <img className="block w-[180px] max-h-[200px] h-full my-5 mx-auto" src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} />
-          <h2 className="pokemon-name text-center font-semibold">{pokemon.name}</h2>
+          <img className="block w-[180px] max-h-[200px] h-full my-5 mx-auto" src={pokemon.sprites.other.dream_world.front_default} alt={capitalize(pokemon.name)} />
+          <h2 className="pokemon-name text-center font-semibold">{capitalize(pokemon.name)}</h2>
           <div className="pokemon-types flex justify-around mt-5 mb-10">
             {pokemon.types.map((type, id) => (
-              <span key={id} className="text-xs tracking-wider font-semibold py-1 px-5 rounded-xl text-white" style={{ backgroundColor: `${typeColor[pokemon.types[0].type.name]}` }}>{type.type.name}</span>
+              <span key={id} className="text-xs tracking-wider font-semibold py-1 px-5 rounded-xl text-white" style={{ backgroundColor: `${typeColor[pokemon.types[0].type.name]}` }}>{capitalize(type.type.name)}</span>
             ))}
           </div>
           <div className="pokemon-stats flex self-end items-center justify-between text-center">
             <div>
-              <h3>{pokemon.stats[1].base_stat}</h3>
-              <p className="text-[#404060]">Attack</p>
+              <h3 className="text-base-200 font-semibold">{pokemon.stats[1].base_stat}</h3>
+              <p className="text-base-300">Attack</p>
             </div>
             <div>
-              <h3>{pokemon.stats[2].base_stat}</h3>
-              <p className="text-[#404060]">Defense</p>
+              <h3 className="text-base-200 font-semibold">{pokemon.stats[2].base_stat}</h3>
+              <p className="text-base-300">Defense</p>
             </div>
             <div>
-              <h3>{pokemon.stats[3].base_stat}</h3>
-              <p className="text-[#404060]">Speed</p>
+              <h3 className="text-base-200 font-semibold">{pokemon.stats[3].base_stat}</h3>
+              <p className="text-base-300">Speed</p>
             </div>
           </div>
         </div>
