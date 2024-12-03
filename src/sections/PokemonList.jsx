@@ -56,7 +56,7 @@ const PokemonList = () => {
   }
 
   return (
-    <section id="pokemon-list" className="flex flex-col justify-center items-center w-screen">
+    <section id="pokemon-list" className="flex flex-col justify-center items-center w-full max-w-screen-xl">
       <div className="join">
         <button className="join-item btn" onClick={() => handlePage('dec')}>«</button>
         <button className="join-item btn btn-disabled">{page}</button>
