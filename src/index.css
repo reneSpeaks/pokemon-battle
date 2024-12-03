@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.menu-item::after {
+    @apply w-full absolute left-0 bottom-0 bg-primary origin-bottom-left h-[2px] ease-in-out transition-transform duration-300 scale-x-0 content-[''];
+}
+
+.signform-input {
+    @apply relative h-12 w-full mt-4;
+
+    input {
+        @apply w-full h-full outline-none px-4 rounded-lg border-2 border-solid border-neutral;
+
+        &:is(:focus) {
+            @apply border-accent;
+        }
+
+        &:is(:focus, :valid) {
+            @apply px-4 pt-2 pb-0;
+        }
+
+        &:is(:valid) {
+            @apply border-primary;
+        }
+
+        &:not([value=""]) {
+            @apply px-4 pt-2 pb-0;
+        }
+
+        &:is(:focus, :valid, :not([value=""])) ~ label {
+            @apply text-accent text-xs -translate-y-[120%];
+        }
+    }
+
+    label {
+        @apply absolute top-1/2 duration-200 ease-in-out pointer-events-none left-4 -translate-y-1/2;
+    }
+}
