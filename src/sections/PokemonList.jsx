@@ -57,16 +57,16 @@ const PokemonList = () => {
 
   return (
     <section id="pokemon-list" className="flex flex-col justify-center items-center w-screen">
-      <div className="flex flex-row justify-center w-full flex-wrap">
-        {pagination.results && pagination.results.map((pokemon) => (
-          <PokemonCard pokemonURL={pokemon.url} key={pokemon.name} />
-        ))}
-      </div>
-
       <div className="join">
         <button className="join-item btn" onClick={() => handlePage('dec')}>«</button>
         <button className="join-item btn btn-disabled">{page}</button>
         <button className="join-item btn" onClick={() => handlePage('inc')}>»</button>
+      </div>
+
+      <div className="flex flex-row justify-center w-full flex-wrap">
+        {pagination.results && pagination.results.map((pokemon) => (
+          <PokemonCard pokemonURL={pokemon.url} key={pokemon.name} />
+        ))}
       </div>
     </section>
   );
