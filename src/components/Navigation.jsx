@@ -1,17 +1,16 @@
 import { NavLink } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
-import { useLogin, useLogout, useUser } from '../contexts/UserContext.jsx';
+import { useLogout, useUser } from '../contexts/UserContext.jsx';
 
 const Navigation = () => {
   const user = useUser();
   const handleLogout = useLogout()
-  const handleLogin = useLogin();
 
   function handleClick() {
     if (user.length > 0) {
       handleLogout();
     } else {
-      handleLogin("Rene", "password");
+      document.getElementById('login-form').showModal()
     }
   }
 
