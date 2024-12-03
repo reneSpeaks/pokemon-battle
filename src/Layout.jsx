@@ -4,17 +4,18 @@ import { ToastContainer } from 'react-toastify';
 import Header from './sections/Header.jsx';
 import Footer from './sections/Footer.jsx';
 import { RosterProvider } from './contexts/RosterContext.jsx';
+import { UserProvider } from './contexts/UserContext.jsx';
 
 const Layout = () => {
   return (
-    <RosterProvider>
+    <RosterProvider><UserProvider>
       <Header />
       <main className="pt-20">
         <ToastContainer position="bottom-left" autoClose={2000} />
         <Outlet />
       </main>
       <Footer />
-    </RosterProvider>
+    </UserProvider></RosterProvider>
   );
 };
 
