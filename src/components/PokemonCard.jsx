@@ -4,8 +4,11 @@ import { toast } from 'react-toastify';
 import { FaHeart } from 'react-icons/fa';
 import { isStored } from '../utils/storage.js';
 import { capitalize } from '../utils/helper.js';
+import { useAddRoster, useRemoveRoster } from '../contexts/RosterContext.jsx';
 
 const PokemonCard = ({ pokemonURL }) => {
+  const addToRoster = useAddRoster();
+  const removeFromRoster = useRemoveRoster();
   const [pokemon, setPokemon] = useState(null);
   const [isRoster, setIsRoster] = useState(false);
   const typeColor = {
@@ -31,19 +34,29 @@ const PokemonCard = ({ pokemonURL }) => {
     axios.get(pokemonURL)
     .then((response) => {
       setPokemon(response.data);
-      setIsRoster(isStored(import.meta.env.VITE_ROSTERSTORAGE, pokemon));
+      setIsRoster(() => isStored(import.meta.env.VITE_ROSTERSTORAGE, { id: response.data.id }));
     })
     .catch((error) => {
       toast.error("Error catching Pokemon.", error);
     });
-
-
   }, []);
+
+  const handleClick = () => {
+    if (!isRoster && pokemon) {
+      addToRoster(pokemon);
+      setIsRoster(() => isStored(import.meta.env.VITE_ROSTERSTORAGE, { id: pokemon.id }));
+    } else if (isRoster && pokemon) {
+      removeFromRoster(pokemon);
+      setIsRoster(() => isStored(import.meta.env.VITE_ROSTERSTORAGE, { id: pokemon.id }));
+    } else {
+      toast.error("Something went wrong.");
+    }
+  }
 
   return (
     <>
       {pokemon && (
-        <div id="pokemon-card" className="m-4 max-w-[350px] w-full h-[450px] px-8 py-5 shadow-xl rounded-2xl cursor-pointer hover:shadow-lg hover:shadow-accent hover:scale-105 duration-200" style={{ background: `radial-gradient(circle at 50% 0%, ${typeColor[pokemon.types[0].type.name]} 36%, #ffffff 36%)` }}>
+        <div id="pokemon-card" onClick={handleClick} className="m-4 max-w-[350px] w-full h-[450px] px-8 py-5 shadow-xl rounded-2xl cursor-pointer hover:shadow-lg hover:shadow-accent hover:scale-105 duration-200" style={{ background: `radial-gradient(circle at 50% 0%, ${typeColor[pokemon.types[0].type.name]} 36%, #ffffff 36%)` }}>
           <div className="flex flex-row">
             <FaHeart className={isRoster ? "text-red-700 drop-shadow-lg" : "text-white drop-shadow-lg"} />
             <p className="pokemon-hp w-20 bg-white text-center px-2 py-0 rounded-xl font-normal ml-auto">
