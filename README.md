@@ -46,4 +46,4 @@ The Backend will start running on [http://localhost:3001](http://localhost:3001)
 
 Environment-specific configurations can be set in `.env` file. take a look at the `example.env` file.
 
-Create a new `.env` file and then copy the contents of `example.env` into it, you may change the `JWT_SECRET` and `PORT` values.
+Create a new `.env` file and then copy the contents of `example.env` into it, you may change the `PORT` value.
