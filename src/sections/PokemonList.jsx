@@ -8,7 +8,7 @@ const PokemonList = () => {
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState({});
   const pokemonCount = 151;
-  const limit = 6;
+  const limit = 12;
 
   useEffect(() => {
     const totalCount = pokemons.length;
