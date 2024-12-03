@@ -8,7 +8,7 @@ const PokemonList = () => {
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState({});
   const pokemonCount = 151;
-  const limit = 3;
+  const limit = 6;
 
   useEffect(() => {
     const totalCount = pokemons.length;
@@ -56,8 +56,8 @@ const PokemonList = () => {
   }
 
   return (
-    <section id="pokemon-list" className="flex flex-col justify-center items-center">
-      <div className="flex flex-row flex-wrap justify-center">
+    <section id="pokemon-list" className="flex flex-col justify-center items-center w-screen">
+      <div className="flex flex-row justify-center w-full flex-wrap">
         {pagination.results && pagination.results.map((pokemon) => (
           <PokemonCard pokemonURL={pokemon.url} key={pokemon.name} />
         ))}

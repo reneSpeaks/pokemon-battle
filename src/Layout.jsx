@@ -11,14 +11,14 @@ const Layout = () => {
   return (
     <UserProvider><RosterProvider>
       <Header />
-      <main className="pt-20">
-        <ToastContainer position="bottom-left" autoClose={2000} />
-        <LoginForm />
-        <Outlet />
-      </main>
-      <Footer />
+      <div className="relative">
+        <main className="flex flex-col relative pt-20 pb-5 z-10 items-center mb-24 bg-base-100 border-b-2 border-primary border-solid">
+          <ToastContainer position="bottom-left" autoClose={2000} /> <LoginForm /> <Outlet />
+        </main>
+        <Footer />
+      </div>
     </RosterProvider></UserProvider>
-  );
+);
 };
 
 export default Layout;
