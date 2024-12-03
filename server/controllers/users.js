@@ -1,4 +1,5 @@
 import User from "../models/user.js";
+import bcrypt from 'bcrypt';
 
 export const getUsers = async (req, res) => {
     try {
@@ -23,16 +24,38 @@ export const getUser = async (req, res) => {
     }
 };
 
+
 export const createUser = async (req, res) => {
     try {
-        const { firstName, lastName, username, password } = req.body;
-        const user = await User.create({ firstName, lastName, username, password });
-        res.status(201).json(user);
+        const { username, password } = req.body;
+
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);  // 10 is the number of salt rounds
+
+        // Create the user with the hashed password
+        const user = await User.create({ username, password: hashedPassword });
+
+        // Send the response with the created user (exclude password for security)
+        res.status(201).json({
+            id: user._id,
+            username: user.username,
+        });
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Something went wrong" });
     }
 };
+
+// export const createUser = async (req, res) => {
+//     try {
+//         const { username, password } = req.body;
+//         const user = await User.create({username, password });
+//         res.status(201).json(user);
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).json({ message: "Something went wrong" });
+//     }
+// };
 
 export const updateUser = async (req, res) => {
     try {

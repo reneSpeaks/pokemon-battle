@@ -5,6 +5,7 @@ import "./db.js";
 import usersRouter from "./routes/users.js";
 import rostersRouter from "./routes/rosters.js";
 import leaderboardsRouter from "./routes/leaderboards.js";
+import loginRouter from "./routes/validateLogin.js";
 
 
 const app = express();
@@ -17,6 +18,8 @@ app.use(morgan('dev'));
 app.use("/users", usersRouter);
 app.use("/rosters", rostersRouter);
 app.use("/leaderboards", leaderboardsRouter);
+app.use("/login", loginRouter);
+
 
 app.get('/', (req, res) => {
   res.status(404).send("Not found");
