@@ -8,14 +8,14 @@ import { UserProvider } from './contexts/UserContext.jsx';
 
 const Layout = () => {
   return (
-    <RosterProvider><UserProvider>
+    <UserProvider><RosterProvider>
       <Header />
       <main className="pt-20">
         <ToastContainer position="bottom-left" autoClose={2000} />
         <Outlet />
       </main>
       <Footer />
-    </UserProvider></RosterProvider>
+    </RosterProvider></UserProvider>
   );
 };
 
