@@ -1,8 +1,10 @@
+import RosterList from '../sections/RosterList.jsx';
+
 const Roster = () => {
   return (
-    <section>
-      <h1>ROSTER</h1>
-    </section>
+    <>
+      <RosterList />
+    </>
   );
 };
 
