@@ -2,7 +2,7 @@ import PokemonCard from '../components/PokemonCard.jsx';
 import { useRoster } from '../contexts/RosterContext.jsx';
 
 const RosterList = () => {
-  const roster = useRoster();
+  const { roster } = useRoster();
 
   return (
     <section id="roster-list" className="min-h-screen">
