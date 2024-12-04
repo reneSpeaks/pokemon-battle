@@ -24,14 +24,14 @@ const sampleUsers = [
     {
         firstName: "Azadeh",
         lastName: "keshavarzjoud",
-        username: "azadeh_joud",
-        password: "azadeh"
+        username: "azadeh",
+        password: "password"
     },
     {
         firstName: "Rene",
         lastName: "Weiberlenn",
-        username: "rene_Weiberlenn",
-        password: "rene"
+        username: "rene",
+        password: "password"
     },
     {
         firstName: "Ash",
