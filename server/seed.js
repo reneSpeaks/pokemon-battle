@@ -1,14 +1,11 @@
-
 import dotenv from 'dotenv';
 dotenv.config();
 
 import mongoose from 'mongoose';
-import User from './server/models/user.js';
-import Roster from './server/models/roster.js';
-import Leaderboard from './server/models/leaderboard.js';
+import User from './models/user.js';
+import Roster from './models/roster.js';
+import Leaderboard from './models/leaderboard.js';
 import bcrypt from 'bcryptjs';
-
-
 
 // MongoDB connection URL
 const dbUrl = process.env.MONGO_URI;
@@ -21,8 +18,6 @@ const hashPassword = async (password) => {
     const salt = await bcrypt.genSalt(10);
     return bcrypt.hash(password, salt);
 };
-
-
 
 // Array of sample users to seed the database with
 const sampleUsers = [
@@ -105,10 +100,6 @@ const sampleLeaderboard = [
     }
 ];
 
-
-
-
-
 const seedDatabase = async () => {
     try {
         // Connect to MongoDB
@@ -161,5 +152,4 @@ const seedDatabase = async () => {
     }
 };
 
-
-seedDatabase();
+void seedDatabase();
