@@ -10,12 +10,6 @@ const UserLogoutContext = createContext(undefined);
 export function useUser() {
   return useContext(UserContext);
 }
-export function useLogin() {
-  return useContext(UserLoginContext);
-}
-export function useLogout() {
-  return useContext(UserLogoutContext);
-}
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(getLocalStorage(import.meta.env.VITE_USERSTORAGE));
@@ -49,7 +43,7 @@ export function UserProvider({ children }) {
     // TODO: REMOVE AFTER IMPLEMENTATION FOR BACKEND
     if (username && password) {
       if (username === import.meta.env.VITE_MOCKUSERNAME && password === import.meta.env.VITE_MOCKPASSWORD) {
-        addToStorage(import.meta.env.VITE_USERSTORAGE, { id: 1, username: username })
+        addToStorage(import.meta.env.VITE_USERSTORAGE, { id: 1, username: username });
         setUser(() => [{ id: 1, username: username }]);
         toast.success('Successfully logged in!');
       } else {
@@ -66,12 +60,8 @@ export function UserProvider({ children }) {
   }
 
   return (
-    <UserContext.Provider value={user}>
-      <UserLoginContext.Provider value={handleLogin}>
-        <UserLogoutContext.Provider value={handleLogout}>
-          {children}
-        </UserLogoutContext.Provider>
-      </UserLoginContext.Provider>
+    <UserContext.Provider value={{ user, handleLogin, handleLogout }}>
+      {children}
     </UserContext.Provider>
   );
 }

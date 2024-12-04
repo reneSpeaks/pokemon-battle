@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useLogin } from '../contexts/UserContext.jsx';
 import { toast } from 'react-toastify';
+import { useUser } from '../contexts/UserContext.jsx';
 
 const LoginForm = () => {
-  const handleLogin = useLogin()
+  const { handleLogin } = useUser()
   const [{ username, password }, setFormState] = useState({
     username: '',
     password: '',
