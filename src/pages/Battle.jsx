@@ -1,6 +1,6 @@
 const Battle = () => {
   return (
-    <section>
+    <section className="min-h-screen">
       <h1>BATTLE</h1>
     </section>
   );

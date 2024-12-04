@@ -5,7 +5,7 @@ const RosterList = () => {
   const roster = useRoster();
 
   return (
-    <section id="roster-list">
+    <section id="roster-list" className="min-h-screen">
       <div className="flex flex-row justify-center w-full flex-wrap">
         {roster && roster.map((pokemon) => (
           <PokemonCard pokemonURL={`${import.meta.env.VITE_POKE_API}pokemon/${pokemon.id}`} key={pokemon.id} />
