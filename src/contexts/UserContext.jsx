@@ -4,8 +4,6 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 
 const UserContext = createContext(undefined);
-const UserLoginContext = createContext(undefined);
-const UserLogoutContext = createContext(undefined);
 
 export function useUser() {
   return useContext(UserContext);
