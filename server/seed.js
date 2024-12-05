@@ -60,20 +60,25 @@ const sampleUsers = [
 ];
 
 // Array of sample Rosters to seed the database with
-const sampleRosters = [
-    {
-        username: "ash_ketchum",
-        pokemonIds: [25, 6, 130] // Pikachu, Charizard, Gyarados
-    },
-    {
-        username: "misty",
-        pokemonIds: [121, 54, 118] // Starmie, Psyduck, Goldeen
-    },
-    {
-        username: "brock_rock",
-        pokemonIds: [95, 74, 111] // Onix, Geodude, Rhyhorn
-    }
-];
+    // Find users to associate with rosters
+    const userAsh = await User.findOne({ username: "ash_ketchum" });
+    const userMisty = await User.findOne({ username: "misty" });
+    const userBrock = await User.findOne({ username: "brock_rock" });
+
+    const sampleRosters = [
+      {
+        userId: userAsh._id,
+        pokemonIds: [{ id: 25 }, { id: 6 }, { id: 130 }],
+      },
+      {
+        userId: userMisty._id,
+        pokemonIds: [{ id: 121 }, { id: 54 }, { id: 118 }],
+      },
+      {
+        userId: userBrock._id,
+        pokemonIds: [{ id: 95 }, { id: 74 }, { id: 111 }],
+      },
+    ];
 
 // Array of sample Leaderboards to seed the database with
 const sampleLeaderboard = [
