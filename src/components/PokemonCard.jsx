@@ -4,13 +4,12 @@ import { toast } from 'react-toastify';
 import { FaHeart } from 'react-icons/fa';
 import { isStored } from '../utils/storage.js';
 import { capitalize } from '../utils/helper.js';
-import { useAddRoster, useRemoveRoster } from '../contexts/RosterContext.jsx';
+import { useRoster } from '../contexts/RosterContext.jsx';
 import { useUser } from '../contexts/UserContext.jsx';
 
 const PokemonCard = ({ pokemonURL }) => {
-  const user = useUser()
-  const addToRoster = useAddRoster();
-  const removeFromRoster = useRemoveRoster();
+  const { user } = useUser()
+  const { addToRoster, removeFromRoster } = useRoster();
   const [pokemon, setPokemon] = useState(null);
   const [isRoster, setIsRoster] = useState(false);
   const typeColor = {

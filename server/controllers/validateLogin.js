@@ -11,7 +11,7 @@ export const validateLogin = async (req, res) => {
 
     try {
         // Check if the user exists
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ username }).select("+password");
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }

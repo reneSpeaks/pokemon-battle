@@ -1,10 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
-import { useLogout, useUser } from '../contexts/UserContext.jsx';
+import { useUser } from '../contexts/UserContext.jsx';
 
 const Navigation = () => {
-  const user = useUser();
-  const handleLogout = useLogout()
+  const { user, handleLogout } = useUser();
 
   function handleClick() {
     if (user.length > 0) {

@@ -4,32 +4,24 @@ import { toast } from 'react-toastify';
 import { useUser } from './UserContext.jsx';
 
 const RosterContext = createContext(undefined);
-const AddRosterContext = createContext(undefined);
-const RemoveRosterContext = createContext(undefined);
 
 export function useRoster() {
   return useContext(RosterContext);
 }
-export function useAddRoster() {
-  return useContext(AddRosterContext);
-}
-export function useRemoveRoster() {
-  return useContext(RemoveRosterContext);
-}
 
 export function RosterProvider({ children }) {
   const [roster, setRoster] = useState(getLocalStorage(import.meta.env.VITE_ROSTERSTORAGE));
-  const user = useUser();
+  const { user } = useUser();
 
   async function addToRoster(pokemon) {
     if (user.length === 0) {
-      toast.warning('You need to be logged in to do this!')
+      toast.warning('You need to be logged in to do this!');
       return;
     }
 
     const localStorage = getLocalStorage(import.meta.env.VITE_ROSTERSTORAGE);
     if (localStorage.length > 5) {
-      toast.warning('You can only have up to 6 pokemon in your roster.')
+      toast.warning('You can only have up to 6 pokemon in your roster.');
       return;
     }
 
@@ -38,13 +30,13 @@ export function RosterProvider({ children }) {
       setRoster((prevState) => [...prevState, { id: pokemon.id }]);
       toast.success('Successfully added to roster!');
     } else {
-      toast.warning('Pokemon already part of roster!')
+      toast.warning('Pokemon already part of roster!');
     }
   }
 
   function removeFromRoster(pokemon) {
     if (user.length === 0) {
-      toast.warning('You need to be logged in to do this!')
+      toast.warning('You need to be logged in to do this!');
       return;
     }
 
@@ -53,17 +45,13 @@ export function RosterProvider({ children }) {
       setRoster((prevState) => prevState.filter((item) => item.id !== pokemon.id));
       toast.warning('Successfully removed from roster!');
     } else {
-      toast.warning('Pokemon not part of roster!')
+      toast.warning('Pokemon not part of roster!');
     }
   }
 
   return (
-    <RosterContext.Provider value={roster}>
-      <AddRosterContext.Provider value={addToRoster}>
-        <RemoveRosterContext.Provider value={removeFromRoster}>
-          {children}
-        </RemoveRosterContext.Provider>
-      </AddRosterContext.Provider>
+    <RosterContext.Provider value={{ roster, addToRoster, removeFromRoster }}>
+      {children}
     </RosterContext.Provider>
   );
 }

@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const ProtectedRoute = ({ redirectPath = "/", children }) => {
-  const user = useUser();
+  const { user } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
