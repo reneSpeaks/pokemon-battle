@@ -15,16 +15,15 @@ const Leaderboard = () => {
   }, []);
 
     return (
-        <div>
-            <h1>Leaderboardssssssss</h1>
-            <table>
+        <div className="overflow-x-auto">
+            <h1 className="text-center text-2xl md:text-3xl mb-4 text-accent">Leaderboard</h1>
+            <table className="table table-xs md:table-md">
                 <thead>
                     <tr>
                         <th>Rank</th>
                         <th>Name</th>
                         <th>Battles Won</th>
                         <th>Battles Lost</th>
-                        <th>Battles Draw</th>
                         <th>Score</th>
                     </tr>
                 </thead>
@@ -33,10 +32,9 @@ const Leaderboard = () => {
                     {leaderboard && leaderboard.map((entry, index) => (
                         <tr key={entry._id}>
                             <td>{index + 1}</td>
-                            <td>{entry.userId?.name || 'Unknown'}</td>
+                            <td>{entry.userId?.username || 'Unknown'}</td>
                             <td>{entry.battlesWon}</td>
                             <td>{entry.battlesLost}</td>
-                            <td>{entry.battlesDraw}</td>
                             <td>{entry.score}</td>
                         </tr>
                     ))}
