@@ -18,7 +18,7 @@ const Battle = () => {
       setPokemonURL(`${import.meta.env.VITE_POKE_API}pokemon/${roster[randomNumber(0, roster.length)].id}`)
     }
     setEnemyURL(`${import.meta.env.VITE_POKE_API}pokemon/${randomEnemy}`);
-  },[])
+  },[roster])
 
   useEffect(() => {
     axios.get(pokemonURL)
