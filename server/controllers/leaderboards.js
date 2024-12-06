@@ -6,7 +6,7 @@ export const getLeaderboards = async (req, res) => {
         .populate({
           path: "userId", // The field in Leaderboard referencing User
           select: "username firstName lastName", // Fields to include from User
-        });
+        }).sort({ score: -1 }).limit(10);
   
       res.status(200).json(leaderboards);
     } catch (error) {
@@ -46,7 +46,29 @@ export const createLeaderboard = async (req, res) => {
         res.status(500).json({ message: "Something went wrong" });
     }
 };
-
+// Update Score after a Battle Create a form or function to send the score update request to the backend.Update Score after a Battle Create a form or function to send the score update request to the backend.
+// Update score after a battle
+// export const updateLeaderboard = async (req, res) => {
+//   const { userId, battlesWon, battlesLost, battlesDraw } = req.body;
+//   try {
+//       const score = (battlesWon * 3) + battlesDraw; // Example scoring logic
+//       const leaderboardEntry = await Leaderboard.findOneAndUpdate(
+//           { userId },
+//           {
+//               $inc: {
+//                   battlesWon,
+//                   battlesLost,
+//                   battlesDraw,
+//               },
+//               $set: { score },
+//           },
+//           { upsert: true, new: true } // Create if not exists, return updated
+//       );
+//       res.status(200).json(leaderboardEntry);
+//   } catch (error) {
+//       res.status(500).json({ error: 'Failed to update leaderboard' });
+//   }
+// };
 export const updateLeaderboard = async (req, res) => {
     try {
         const {
